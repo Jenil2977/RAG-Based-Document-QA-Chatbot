@@ -9,9 +9,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 
 import google.generativeai as genai
 
-# ======================
-# CONFIG
-# ======================
+
 
 load_dotenv()
 
@@ -27,19 +25,13 @@ st.set_page_config(
     layout="wide"
 )
 
-# ======================
-# SESSION STATE
-# ======================
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "vector_db" not in st.session_state:
     st.session_state.vector_db = None
 
-# ======================
-# UI
-# ======================
+
 
 st.title("📚 RAG-Based Document Q&A Chatbot")
 
@@ -52,9 +44,7 @@ uploaded_file = st.file_uploader(
     type=["pdf"]
 )
 
-# ======================
-# PDF PROCESSING
-# ======================
+
 
 if uploaded_file and st.session_state.vector_db is None:
 
@@ -93,9 +83,7 @@ if uploaded_file and st.session_state.vector_db is None:
         f"PDF Processed Successfully! ({len(chunks)} chunks created)"
     )
 
-# ======================
-# QUESTION SECTION
-# ======================
+
 
 if st.session_state.vector_db:
 
@@ -155,9 +143,6 @@ say:
                         f"Error: {str(e)}"
                     )
 
-# ======================
-# CHAT HISTORY
-# ======================
 
 if st.session_state.messages:
 
@@ -177,9 +162,7 @@ if st.session_state.messages:
 
         st.markdown("---")
 
-# ======================
-# CLEAR CHAT
-# ======================
+
 
 if st.button("🗑 Clear Chat"):
 
